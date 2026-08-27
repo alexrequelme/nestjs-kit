@@ -25,21 +25,36 @@ export class FirebaseAdminService implements OnModuleDestroy {
       return;
     }
 
-    const { appName: _appName, clientEmail, privateKey, ...appOptions } = options;
-    const credential = appOptions.credential ?? (clientEmail && privateKey
-      ? cert({ projectId: appOptions.projectId, clientEmail, privateKey: privateKey.replace(/\\n/g, "\n") })
-      : undefined);
+    const { appName: _appName, projectId, clientEmail, privateKey, ...appOptions } = options;
     this.app = initializeApp(
-      { ...appOptions, ...(credential ? { credential } : {}) },
+      {
+        ...appOptions,
+        credential: cert({
+          projectId,
+          clientEmail,
+          privateKey: privateKey.replace(/\\n/g, "\n"),
+        }),
+      },
       appName === "[DEFAULT]" ? undefined : appName,
     );
     this.ownsApp = true;
   }
 
-  auth(): Auth { return getAuth(this.app); }
-  firestore(): Firestore { return getFirestore(this.app); }
-  storage(): Storage { return getStorage(this.app); }
-  getApp(): App { return this.app; }
+  auth(): Auth {
+    return getAuth(this.app);
+  }
+
+  firestore(): Firestore {
+    return getFirestore(this.app);
+  }
+
+  storage(): Storage {
+    return getStorage(this.app);
+  }
+
+  getApp(): App {
+    return this.app;
+  }
 
   getOptions(): FirebaseAdminModuleOptions {
     return this.options;
