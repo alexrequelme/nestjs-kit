@@ -1,9 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-} from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { FirebaseAuthStrategy } from "./firebase-auth.strategy";
 import { SKIP_FIREBASE_AUTH_KEY } from "./skip-firebase-auth.decorator";
@@ -34,13 +29,13 @@ export class FirebaseAuthGuard implements CanActivate {
       ? authorization.slice("Bearer ".length).trim()
       : undefined;
 
-    if (!token) throw new UnauthorizedException("Missing Firebase bearer token");
+    if (!token) throw new UnauthorizedException("Incorrect credentials");
 
     try {
       request.user = await this.firebaseAuth.verifyIdToken(token);
       return true;
     } catch {
-      throw new UnauthorizedException("Invalid Firebase token");
+      throw new UnauthorizedException("Incorrect credentials");
     }
   }
 }
