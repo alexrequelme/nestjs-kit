@@ -13,4 +13,8 @@ export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN, OPTIONS_TYPE, ASYN
   new ConfigurableModuleBuilder<FirebaseAdminModuleOptions>()
     .setClassMethodName("forRoot")
     .setFactoryMethodName("forRootAsync")
+    .setExtras({ isGlobal: true }, (definition, extras) => ({
+      ...definition,
+      global: extras.isGlobal,
+    }))
     .build();
