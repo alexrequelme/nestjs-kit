@@ -16,9 +16,13 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepare": "pnpm build",
     "clean": "rm -rf dist",
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "echo 'No tests yet'",
