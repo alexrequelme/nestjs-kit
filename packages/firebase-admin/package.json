@@ -1,0 +1,27 @@
+{
+  "name": "@nestjs-kit/firebase-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable Firebase Admin integration for NestJS",
+  "license": "MIT",
+  "peerDependencies": {
+    "@nestjs/common": ">=11.0.0",
+    "@nestjs/core": ">=11.0.0",
+    "firebase-admin": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "11.0.0",
+    "@nestjs/core": "11.0.0",
+    "firebase-admin": "13.0.0"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "echo 'No tests yet'",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}
