@@ -2,11 +2,36 @@
 
 Package for integrating Firebase Admin into NestJS applications.
 
+## Installation
+
+Install the package directly from GitHub:
+
+```bash
+pnpm add "github:alexrequelme/nestjs-kit#path:packages/firebase-admin"
+```
+
+The consuming project must also have NestJS and Firebase Admin installed:
+
+```bash
+pnpm add @nestjs/common @nestjs/core firebase-admin
+```
+
+### Required pnpm configuration
+
+Allow the package build script in the consuming project's `pnpm-workspace.yaml`:
+
+```yaml
+allowBuilds:
+  "@nestjs-kit/firebase-admin@git+https://github.com/alexrequelme/nestjs-kit.git": true
+```
+
+## Usage
+
 The package exposes a configurable `FirebaseAdminModule`:
 
 ```ts
-import { Module } from '@nestjs/common';
-import { FirebaseAdminModule } from '@nestjs-kit/firebase-admin';
+import { Module } from "@nestjs/common";
+import { FirebaseAdminModule } from "@nestjs-kit/firebase-admin";
 
 @Module({
   imports: [
